@@ -5,6 +5,7 @@ trait VectorProperties {
     fn add(vec1: &Self, vec2: &Self) -> Self;
     fn sub(vec1: &Self, vec2: &Self) -> Self; 
     fn mul(vec1: &Self, vec2: &Self) -> Self;
+    fn lerp(vec1: &Self, vec2: &Self, t: f64) -> Self;
 
     fn dot(vec1: &Self, vec2: &Self) -> f64;
     fn angle(vec1: &Self, vec2: &Self) -> f64;
@@ -60,6 +61,17 @@ impl VectorProperties for Vector2 {
             y: vec1.y * vec2.y 
         }
     }
+
+    fn lerp(vec1: &Vector2, vec2: &Vector2, t: f64) -> Vector2 {
+        let x: f64 = vec1.x + ((vec2.x - vec1.x) * t);
+        let y: f64 = vec1.y + ((vec2.y - vec1.y) * t);
+
+        Vector2 {
+            x,
+            y
+        }
+    }
+
 
     fn dot(vec1: &Vector2, vec2: &Vector2) -> f64 {
         vec1.x * vec2.x + vec1.y * vec2.y
@@ -158,6 +170,18 @@ impl VectorProperties for Vector3 {
         }
     }
 
+    fn lerp(vec1: &Vector3, vec2: &Vector3, t: f64) -> Vector3 {
+        let x: f64 = vec1.x + ((vec2.x - vec1.x) * t);
+        let y: f64 = vec1.y + ((vec2.y - vec1.y) * t);
+        let z: f64 = vec1.z + ((vec2.z - vec1.z) * t);
+
+        Vector3 {
+            x,
+            y,
+            z
+        }
+    }
+
     fn dot(vec1: &Vector3, vec2: &Vector3) -> f64 {
         vec1.x * vec2.x + vec1.y * vec2.y + vec1.z * vec2.z
     }
@@ -248,6 +272,20 @@ impl VectorProperties for Vector4 {
             y: vec1.y * vec2.y,
             z: vec1.z * vec2.z,
             w: vec1.w * vec2.w
+        }
+    }
+    
+    fn lerp(vec1: &Vector4, vec2: &Vector4, t: f64) -> Vector4 {
+        let x: f64 = vec1.x + ((vec2.x - vec1.x) * t);
+        let y: f64 = vec1.y + ((vec2.y - vec1.y) * t);
+        let z: f64 = vec1.z + ((vec2.z - vec1.z) * t);
+        let w: f64 = vec1.w + ((vec2.w - vec1.w) * t);
+
+        Vector4 {
+            x,
+            y,
+            z,
+            w
         }
     }
 
