@@ -3,6 +3,7 @@ extern crate pancurses;
 use pancurses::{initscr, endwin};
 
 mod vectors;
+mod matrices;
 
 fn main() {
     let window = initscr();
