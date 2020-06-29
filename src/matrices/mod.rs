@@ -642,14 +642,22 @@ impl MatrixProperties for Matrix44 {
         self.m00 = -self.m00;
         self.m01 = -self.m01;
         self.m02 = -self.m02;
+        self.m03 = -self.m03;
 
         self.m10 = -self.m10;
         self.m11 = -self.m11;
         self.m12 = -self.m12;
+        self.m13 = -self.m13;
 
         self.m20 = -self.m20;
         self.m21 = -self.m21;
         self.m22 = -self.m22;
+        self.m23 = -self.m23;
+
+        self.m30 = -self.m30;
+        self.m31 = -self.m31;
+        self.m32 = -self.m32;
+        self.m33 = -self.m33;
     }
 
     fn det(&self) -> f64 {
