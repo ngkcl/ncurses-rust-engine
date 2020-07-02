@@ -24,6 +24,17 @@ pub struct Matrix44 {
     pub m33: f64
 }
 
+impl Default for Matrix44 {
+    fn default() -> Matrix44 {
+        Matrix44 {
+            m00: 1., m01: 0., m02: 0., m03: 0.,
+            m10: 0., m11: 1., m12: 0., m13: 0.,
+            m20: 0., m21: 0., m22: 1., m23: 0.,
+            m30: 0., m31: 0., m32: 0., m33: 1.,
+        }
+    }
+}
+
 impl Matrix44 {
     fn scale(&mut self, v: &Vector3) {
         self.m00 *= v.x;

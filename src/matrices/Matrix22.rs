@@ -9,6 +9,16 @@ pub struct Matrix22 {
     pub m11: f64
 }
 
+
+impl Default for Matrix22 {
+    fn default() -> Matrix22 {
+        Matrix22 {
+            m00: 1., m01: 0., 
+            m10: 0., m11: 1.
+        }
+    }
+}
+
 impl MatrixProperties for Matrix22 {
     type Vector = Vector2;
 

@@ -16,6 +16,16 @@ pub struct Matrix33 {
     pub m22: f64
 }
 
+impl Default for Matrix33 {
+    fn default() -> Matrix33 {
+        Matrix33 {
+            m00: 1., m01: 0., m02: 0.,
+            m10: 0., m11: 1., m12: 0.,
+            m20: 0., m21: 0., m22: 1.
+        }
+    }
+}
+
 impl MatrixProperties for Matrix33 {
     type Vector = Vector3;
 
