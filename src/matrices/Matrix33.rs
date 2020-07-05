@@ -1,5 +1,6 @@
 use crate::matrices::MatrixProperties::*;
 use crate::vectors::Vector3::*;
+use std::ops;
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Matrix33 {
@@ -204,5 +205,56 @@ impl MatrixProperties for Matrix33 {
         println!("{} {} {}", self.m00, self.m01, self.m02);
         println!("{} {} {}", self.m10, self.m11, self.m12);
         println!("{} {} {}", self.m20, self.m21, self.m22);
+    }
+}
+
+// Operator overloading
+impl ops::Add<Matrix33> for Matrix33 {
+    type Output = Matrix33;
+
+    fn add(self, rhs: Matrix33) -> Matrix33 {
+        <Matrix33 as MatrixProperties>::add(&self, &rhs)
+    }
+}
+
+impl ops::AddAssign<Matrix33> for Matrix33 {
+    fn add_assign(&mut self, rhs: Matrix33) {
+        *self = Matrix33::add(&self, &rhs);
+    }
+}
+
+impl ops::Sub<Matrix33> for Matrix33 {
+    type Output = Matrix33;
+
+    fn sub(self, rhs: Matrix33) -> Matrix33 {
+        <Matrix33 as MatrixProperties>::sub(&self, &rhs)
+    }
+}
+
+impl ops::SubAssign<Matrix33> for Matrix33 {
+    fn sub_assign(&mut self, rhs: Matrix33) {
+        *self = Matrix33::sub(&self, &rhs)
+    }
+}
+
+impl ops::Mul<Matrix33> for Matrix33 {
+    type Output = Matrix33;
+
+    fn mul(self, rhs: Matrix33) -> Matrix33 {
+        <Matrix33 as MatrixProperties>::mul(&self, &rhs)
+    }
+}
+
+impl ops::Mul<Vector3> for Matrix33 {
+    type Output = Vector3;
+
+    fn mul(self, rhs: Vector3) -> Vector3 {
+        <Matrix33 as MatrixProperties>::trans(&self, &rhs)
+    }
+}
+
+impl ops::MulAssign<Matrix33> for Matrix33 {
+    fn mul_assign(&mut self, rhs: Matrix33) {
+        *self = Matrix33::mul(&self, &rhs)
     }
 }

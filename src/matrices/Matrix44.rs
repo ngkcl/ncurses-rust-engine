@@ -1,5 +1,6 @@
 use crate::matrices::MatrixProperties::*;
 use crate::vectors::{Vector4::*, Vector3::*};
+use std::ops;
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Matrix44 {
@@ -381,5 +382,56 @@ impl MatrixProperties for Matrix44 {
         println!("{} {} {} {}", self.m10, self.m11, self.m12, self.m13);
         println!("{} {} {} {}", self.m20, self.m21, self.m22, self.m23);
         println!("{} {} {} {}", self.m30, self.m31, self.m32, self.m33);
+    }
+}
+
+// Operator overloading
+impl ops::Add<Matrix44> for Matrix44 {
+    type Output = Matrix44;
+
+    fn add(self, rhs: Matrix44) -> Matrix44 {
+        <Matrix44 as MatrixProperties>::add(&self, &rhs)
+    }
+}
+
+impl ops::AddAssign<Matrix44> for Matrix44 {
+    fn add_assign(&mut self, rhs: Matrix44) {
+        *self = Matrix44::add(&self, &rhs);
+    }
+}
+
+impl ops::Sub<Matrix44> for Matrix44 {
+    type Output = Matrix44;
+
+    fn sub(self, rhs: Matrix44) -> Matrix44 {
+        <Matrix44 as MatrixProperties>::sub(&self, &rhs)
+    }
+}
+
+impl ops::SubAssign<Matrix44> for Matrix44 {
+    fn sub_assign(&mut self, rhs: Matrix44) {
+        *self = Matrix44::sub(&self, &rhs)
+    }
+}
+
+impl ops::Mul<Matrix44> for Matrix44 {
+    type Output = Matrix44;
+
+    fn mul(self, rhs: Matrix44) -> Matrix44 {
+        <Matrix44 as MatrixProperties>::mul(&self, &rhs)
+    }
+}
+
+impl ops::Mul<Vector4> for Matrix44 {
+    type Output = Vector4;
+
+    fn mul(self, rhs: Vector4) -> Vector4 {
+        <Matrix44 as MatrixProperties>::trans(&self, &rhs)
+    }
+}
+
+impl ops::MulAssign<Matrix44> for Matrix44 {
+    fn mul_assign(&mut self, rhs: Matrix44) {
+        *self = Matrix44::mul(&self, &rhs)
     }
 }
