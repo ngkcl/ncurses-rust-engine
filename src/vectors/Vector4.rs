@@ -1,4 +1,5 @@
 use crate::vectors::VectorProperties::*;
+use std::ops;
 
 // Vector4 --------------------------
 #[derive(Debug, Copy, Clone, PartialEq)]
@@ -113,3 +114,40 @@ impl VectorProperties for Vector4 {
     }
 }
 // ==================================
+
+// Operator overloading
+impl ops::Add<Vector4> for Vector4 {
+    type Output = Vector4;
+
+    fn add(self, rhs: Vector4) -> Vector4 {
+        <Vector4 as VectorProperties>::add(&self, &rhs)
+    }
+}
+
+impl ops::AddAssign<Vector4> for Vector4 {
+    fn add_assign(&mut self, rhs: Vector4) {
+        *self = Vector4::add(&self, &rhs);
+    }
+}
+
+impl ops::Sub<Vector4> for Vector4 {
+    type Output = Vector4;
+
+    fn sub(self, rhs: Vector4) -> Vector4 {
+        <Vector4 as VectorProperties>::sub(&self, &rhs)
+    }
+}
+
+impl ops::SubAssign<Vector4> for Vector4 {
+    fn sub_assign(&mut self, rhs: Vector4) {
+        *self = Vector4::sub(&self, &rhs)
+    }
+}
+
+impl ops::Mul<Vector4> for Vector4 {
+    type Output = f64;
+
+    fn mul(self, rhs: Vector4) -> f64 {
+        Vector4::dot(&self, &rhs)
+    }
+}
