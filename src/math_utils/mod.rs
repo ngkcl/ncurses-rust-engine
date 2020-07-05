@@ -1,6 +1,8 @@
 use crate::defs::*;
 
-pub struct GeneralMath {
+pub struct GeneralMath;
+
+impl GeneralMath{
     pub fn interpolate(a: f64, b: f64, t: f64) -> f64 {
         a + ((b - a ) * t)
     }

@@ -5,6 +5,9 @@ use pancurses::{initscr, endwin};
 
 mod vectors;
 mod matrices;
+mod quaternions;
+mod math_utils;
+
 mod defs;
 
 fn main() {

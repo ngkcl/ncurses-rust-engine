@@ -54,7 +54,7 @@ impl Matrix44 {
         self.m23 *= v.z;
     }
 
-    fn rotate(&mut self, eulerAxis: &Vector3, angle: f64) {
+    pub fn rotate(&mut self, eulerAxis: &Vector3, angle: f64) {
         let c: f64 = angle.cos();
         let s: f64 = angle.sin();
 
