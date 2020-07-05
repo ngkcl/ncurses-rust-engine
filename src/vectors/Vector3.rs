@@ -1,4 +1,5 @@
 use crate::vectors::VectorProperties::*;
+use std::ops;
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Vector3 {
@@ -111,5 +112,56 @@ impl VectorProperties for Vector3 {
 
     fn print(&self) {
         println!("{} {} {}", self.x, self.y, self.z)
+    }
+}
+
+// Operator overloading
+impl ops::Add<Vector3> for Vector3 {
+    type Output = Vector3;
+
+    fn add(self, rhs: Vector3) -> Vector3 {
+        <Vector3 as VectorProperties>::add(&self, &rhs)
+    }
+}
+
+impl ops::AddAssign<Vector3> for Vector3 {
+    fn add_assign(&mut self, rhs: Vector3) {
+        *self = Vector3::add(&self, &rhs);
+    }
+}
+
+impl ops::Sub<Vector3> for Vector3 {
+    type Output = Vector3;
+
+    fn sub(self, rhs: Vector3) -> Vector3 {
+        <Vector3 as VectorProperties>::sub(&self, &rhs)
+    }
+}
+
+impl ops::SubAssign<Vector3> for Vector3 {
+    fn sub_assign(&mut self, rhs: Vector3) {
+        *self = Vector3::sub(&self, &rhs)
+    }
+}
+
+impl ops::Mul<Vector3> for Vector3 {
+    type Output = f64;
+
+    fn mul(self, rhs: Vector3) -> f64 {
+        Vector3::dot(&self, &rhs)
+    }
+}
+
+impl ops::Rem<Vector3> for Vector3 {
+    type Output = Vector3;
+
+    fn rem(self, rhs: Vector3) -> Vector3 {
+        Vector3::cross(&self, &rhs)
+    }
+}
+
+impl ops::RemAssign<Vector3> for Vector3 {
+    fn rem_assign(&mut self, rhs: Vector3) {
+        *self = Vector3::cross(&self, &rhs)
     }
 }
