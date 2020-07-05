@@ -10,6 +10,17 @@ pub struct Quaternion {
     w: f64
 }
 
+impl Default for Quaternion {
+    fn default() -> Quaternion {
+        Quaternion {
+            x: 0.0,
+            y: 0.0,
+            z: 0.0,
+            w: 1.0
+        }
+    }
+}
+
 impl Quaternion {
     fn setIdentity(&mut self) {
         self.x = 0.0;
@@ -73,7 +84,7 @@ impl Quaternion {
     }
 
     fn setToAxisAngle(&mut self, axis: &Vector3, angle: f64) {
-        let rot: Matrix44 = Default::default();
+        let mut rot: Matrix44 = Default::default();
 
         rot.rotate(&axis, angle);
         
@@ -82,7 +93,7 @@ impl Quaternion {
     }
 
     fn slerp(a: &Quaternion, b: &Quaternion, blend: f64) -> Quaternion {
-        let mut result: Quaternion;
+        let mut result: Quaternion = Default::default();
 
         let dot = a.w *b.w + a.x*b.x + a.y*b.y + a.z*b.z;
         let blendI = 1.0 - blend;
@@ -105,15 +116,15 @@ impl Quaternion {
 
     pub fn lookRotation(&mut self, f: &Vector3, u: &Vector3) {
         // Copy (should work)
-        let forward: Vector3 = *f;
-        let up: Vector3 = *u;
+        let mut forward: Vector3 = *f;
+        let mut up: Vector3 = *u;
 
         forward.normalize();
         up.normalize();
         
         let right = Vector3::cross(&forward, &up);
 
-        let rot: Matrix44 = Default::default();
+        let mut rot: Matrix44 = Default::default();
 
         rot.m00 = right.x;
         rot.m10 = right.y;
