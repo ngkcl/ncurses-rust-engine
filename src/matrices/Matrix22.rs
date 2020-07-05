@@ -116,4 +116,9 @@ impl MatrixProperties for Matrix22 {
     fn det(&self) -> f64 {
         self.m00 * self.m11 - self.m01 * self.m10
     }
+
+    fn print(&self) {
+        println!("{} {}", self.m00, self.m01);
+        println!("{} {}", self.m10, self.m11);
+    }
 }

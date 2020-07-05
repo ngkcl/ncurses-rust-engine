@@ -200,4 +200,9 @@ impl MatrixProperties for Matrix33 {
                 + self.m02 * (self.m10 * self.m21 - self.m11 * self.m20);
     }
 
+    fn print(&self) {
+        println!("{} {} {}", self.m00, self.m01, self.m02);
+        println!("{} {} {}", self.m10, self.m11, self.m12);
+        println!("{} {} {}", self.m20, self.m21, self.m22);
+    }
 }

@@ -14,4 +14,6 @@ pub trait MatrixProperties {
     fn negate(&mut self);
 
     fn det(&self) -> f64;
+
+    fn print(&self);
 }
