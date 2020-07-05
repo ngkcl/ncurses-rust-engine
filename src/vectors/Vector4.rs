@@ -107,5 +107,9 @@ impl VectorProperties for Vector4 {
         self.z /= mag;
         self.w /= mag;
     }
+    
+    fn print(&self) {
+        println!("{} {} {} {}", self.x, self.y, self.z, self.w)
+    }
 }
 // ==================================

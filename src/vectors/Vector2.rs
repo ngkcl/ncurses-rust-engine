@@ -88,6 +88,10 @@ impl VectorProperties for Vector2 {
         self.x /= mag;
         self.y /= mag;
     }
+
+    fn print(&self) {
+        println!("{} {}", self.x, self.y)
+    }
 }
 
 // Operator overloading

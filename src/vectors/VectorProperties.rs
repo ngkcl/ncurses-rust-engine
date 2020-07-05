@@ -17,5 +17,6 @@ pub trait VectorProperties {
     fn scale(&mut self, factor: f64);
     fn normalize(&mut self);
 
-    // Getters
+    fn print(&self);
+
 }

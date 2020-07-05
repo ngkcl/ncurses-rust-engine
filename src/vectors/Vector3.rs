@@ -16,7 +16,7 @@ impl Vector3 {
         }
     }
 
-    fn cross(vec1: &Vector3, vec2: &Vector3) -> Vector3 {
+    pub fn cross(vec1: &Vector3, vec2: &Vector3) -> Vector3 {
         let x: f64 = (vec1.y * vec2.z) - (vec1.z * vec2.y);
         let y: f64 = (vec1.z * vec2.x) - (vec1.x * vec2.z);
         let z: f64 = (vec1.x * vec2.y) - (vec1.y * vec2.x);
@@ -107,5 +107,9 @@ impl VectorProperties for Vector3 {
         self.x /= mag;
         self.y /= mag;
         self.z /= mag;
+    }
+
+    fn print(&self) {
+        println!("{} {} {}", self.x, self.y, self.z)
     }
 }
