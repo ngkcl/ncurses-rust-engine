@@ -5,6 +5,7 @@ use pancurses::{initscr, endwin};
 
 mod vectors;
 mod matrices;
+mod defs;
 
 fn main() {
     let window = initscr();

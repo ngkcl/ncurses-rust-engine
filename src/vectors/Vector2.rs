@@ -1,4 +1,5 @@
 use crate::vectors::VectorProperties::*;
+use std::ops;
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Vector2 {
@@ -86,5 +87,42 @@ impl VectorProperties for Vector2 {
 
         self.x /= mag;
         self.y /= mag;
+    }
+}
+
+// Operator overloading
+impl ops::Add<Vector2> for Vector2 {
+    type Output = Vector2;
+
+    fn add(self, rhs: Vector2) -> Vector2 {
+        <Vector2 as VectorProperties>::add(&self, &rhs)
+    }
+}
+
+impl ops::AddAssign<Vector2> for Vector2 {
+    fn add_assign(&mut self, rhs: Vector2) {
+        *self = Vector2::add(&self, &rhs);
+    }
+}
+
+impl ops::Sub<Vector2> for Vector2 {
+    type Output = Vector2;
+
+    fn sub(self, rhs: Vector2) -> Vector2 {
+        <Vector2 as VectorProperties>::sub(&self, &rhs)
+    }
+}
+
+impl ops::SubAssign<Vector2> for Vector2 {
+    fn sub_assign(&mut self, rhs: Vector2) {
+        *self = Vector2::sub(&self, &rhs)
+    }
+}
+
+impl ops::Mul<Vector2> for Vector2 {
+    type Output = f64;
+
+    fn mul(self, rhs: Vector2) -> f64 {
+        Vector2::dot(&self, &rhs)
     }
 }
