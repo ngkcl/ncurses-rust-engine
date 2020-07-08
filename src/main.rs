@@ -6,6 +6,7 @@ use pancurses::{initscr, endwin};
 mod vectors;
 mod matrices;
 mod quaternions;
+mod rasterizer;
 mod math_utils;
 
 mod defs;
