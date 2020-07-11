@@ -99,6 +99,13 @@ impl Matrix44 {
         self.m12 = t12;
         self.m13 = t13;
     }
+
+    pub fn translate(&mut self, v: &Vector3) {
+        self.m30 += self.m00 * v.x + self.m10 * v.y + self.m20 * v.z;
+        self.m31 += self.m01 * v.x + self.m11 * v.y + self.m21 * v.z;
+        self.m32 += self.m02 * v.x + self.m12 * v.y + self.m22 * v.z;
+        self.m33 += self.m03 * v.x + self.m13 * v.y + self.m23 * v.z;
+    }
 }
 
 fn DET33(t00: f64, t01: f64, t02: f64, t10: f64, t11: f64, t12: f64, t20: f64, t21: f64, t22: f64) -> f64 {
