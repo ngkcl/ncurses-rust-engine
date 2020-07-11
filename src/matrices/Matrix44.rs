@@ -37,7 +37,7 @@ impl Default for Matrix44 {
 }
 
 impl Matrix44 {
-    fn scale(&mut self, v: &Vector3) {
+    pub fn scale(&mut self, v: &Vector3) {
         self.m00 *= v.x;
         self.m01 *= v.x;
         self.m02 *= v.x;
