@@ -1,1 +1,1 @@
-# ncurses-rust-engine
+# Curses-based 3D Rendering Engine
